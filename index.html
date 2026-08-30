@@ -1,0 +1,1819 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mariana — Técnico Web & Software Junior</title>
+<meta name="description" content="Portafolio de Mariana, desarrolladora web y software. Proyectos, experiencia y tecnologías.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<style>
+/* =========================================================
+   MARIANA — PORTFOLIO
+   Tokens: fondo casi-negro con matiz azulado, acento índigo,
+   toque champán para momentos de lujo, serif Fraunces para
+   titulares + Inter para texto/UI.
+   ========================================================= */
+
+:root{
+  --bg: #0A0B10;
+  --bg-alt: #0E1017;
+  --surface: #13151D;
+  --surface-2: #191C26;
+  --border: rgba(255,255,255,0.08);
+  --border-strong: rgba(255,255,255,0.14);
+
+  --text: #EFEEE9;
+  --text-muted: #9497A6;
+  --text-faint: #6A6D7C;
+
+  --accent: #7C8CFF;
+  --accent-soft: rgba(124,140,255,0.14);
+  --accent-strong: #A5B0FF;
+  --champagne: #CBAE7A;
+
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-lg: 22px;
+
+  --shadow-lg: 0 30px 60px -20px rgba(0,0,0,0.55);
+  --shadow-md: 0 16px 32px -14px rgba(0,0,0,0.5);
+
+  --ease: cubic-bezier(.22,.9,.32,1);
+
+  --font-display: 'Fraunces', 'Georgia', serif;
+  --font-body: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+
+  --max-width: 1180px;
+}
+
+*,*::before,*::after{ box-sizing: border-box; }
+
+html{
+  scroll-behavior: smooth;
+}
+
+body{
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+img{ max-width: 100%; display: block; }
+
+a{ color: inherit; text-decoration: none; }
+
+button{ font-family: inherit; cursor: pointer; }
+
+ul{ list-style: none; margin: 0; padding: 0; }
+
+.section-inner{
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 32px;
+}
+
+/* subtle grain overlay for a premium, non-flat surface */
+.grain{
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 2;
+  opacity: 0.035;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+::selection{
+  background: var(--accent);
+  color: #05060A;
+}
+
+/* focus visibility */
+a:focus-visible, button:focus-visible{
+  outline: 2px solid var(--accent-strong);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* =========================================================
+   SECTION TITLES
+   ========================================================= */
+
+.section-eyebrow{
+  font-size: 0.875rem;
+  color: var(--champagne);
+  margin: 0 0 14px;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+}
+
+.section-title{
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: clamp(1.9rem, 3.2vw, 2.75rem);
+  line-height: 1.15;
+  margin: 0 0 20px;
+  max-width: 18ch;
+  color: var(--text);
+}
+
+/* =========================================================
+   BUTTONS
+   ========================================================= */
+
+.btn{
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 14px 26px;
+  border-radius: 999px;
+  font-size: 0.95rem;
+  font-weight: 500;
+  transition: transform .35s var(--ease), background .35s var(--ease), border-color .35s var(--ease), box-shadow .35s var(--ease);
+  white-space: nowrap;
+}
+
+.btn--primary{
+  background: var(--text);
+  color: #0A0B10;
+}
+.btn--primary:hover{
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+.btn--ghost{
+  background: transparent;
+  border: 1px solid var(--border-strong);
+  color: var(--text);
+}
+.btn--ghost:hover{
+  border-color: var(--accent-strong);
+  background: var(--accent-soft);
+  transform: translateY(-2px);
+}
+
+.arrow{ transition: transform .3s var(--ease); display: inline-block; }
+a:hover .arrow{ transform: translateX(3px); }
+
+.btn__icon{
+  width: 17px; height: 17px;
+  flex-shrink: 0;
+}
+
+/* =========================================================
+   REDES SOCIALES (contacto)
+   ========================================================= */
+
+.social{
+  display: flex;
+  justify-content: center;
+  gap: 14px;
+  margin-top: 30px;
+}
+
+.social__link{
+  width: 44px; height: 44px;
+  border-radius: 50%;
+  border: 1px solid var(--border-strong);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-muted);
+  transition: color .3s var(--ease), border-color .3s var(--ease), background .3s var(--ease), transform .3s var(--ease);
+}
+.social__link svg{ width: 19px; height: 19px; }
+.social__link:hover{
+  color: var(--text);
+  border-color: var(--accent-strong);
+  background: var(--accent-soft);
+  transform: translateY(-2px);
+}
+
+/* =========================================================
+   NAVBAR
+   ========================================================= */
+
+.nav{
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  padding: 22px 0;
+  transition: padding .4s var(--ease), background .4s var(--ease), border-color .4s var(--ease);
+  border-bottom: 1px solid transparent;
+}
+
+.nav.is-scrolled{
+  padding: 14px 0;
+  background: rgba(10,11,16,0.78);
+  backdrop-filter: blur(14px) saturate(140%);
+  -webkit-backdrop-filter: blur(14px) saturate(140%);
+  border-bottom: 1px solid var(--border);
+}
+
+.nav__inner{
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 32px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.nav__brand{
+  font-family: var(--font-display);
+  font-size: 1.35rem;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+}
+
+.nav__links{
+  display: flex;
+  align-items: center;
+  gap: 34px;
+}
+
+.nav__link{
+  font-size: 0.92rem;
+  color: var(--text-muted);
+  position: relative;
+  transition: color .3s var(--ease);
+}
+.nav__link:hover{ color: var(--text); }
+.nav__link::after{
+  content: '';
+  position: absolute;
+  left: 0; bottom: -5px;
+  width: 0; height: 1px;
+  background: var(--accent-strong);
+  transition: width .3s var(--ease);
+}
+.nav__link:hover::after{ width: 100%; }
+
+.nav__cta{
+  font-size: 0.88rem;
+  font-weight: 500;
+  padding: 10px 18px;
+  border-radius: 999px;
+  border: 1px solid var(--border-strong);
+  transition: border-color .3s var(--ease), background .3s var(--ease);
+}
+.nav__cta:hover{
+  border-color: var(--accent-strong);
+  background: var(--accent-soft);
+}
+
+.nav__toggle{
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  background: none;
+  border: none;
+  padding: 8px;
+}
+.nav__toggle span{
+  width: 22px; height: 1.5px;
+  background: var(--text);
+  transition: transform .35s var(--ease), opacity .35s var(--ease);
+}
+.nav__toggle.is-open span:nth-child(1){ transform: translateY(6.5px) rotate(45deg); }
+.nav__toggle.is-open span:nth-child(2){ opacity: 0; }
+.nav__toggle.is-open span:nth-child(3){ transform: translateY(-6.5px) rotate(-45deg); }
+
+/* =========================================================
+   HERO
+   ========================================================= */
+
+.hero{
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  padding: 140px 0 80px;
+  background:
+    radial-gradient(60% 50% at 82% 18%, rgba(124,140,255,0.10), transparent 65%),
+    radial-gradient(40% 40% at 10% 85%, rgba(203,174,122,0.06), transparent 60%);
+}
+
+.hero__inner{
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 32px;
+  display: grid;
+  grid-template-columns: 1.05fr 0.95fr;
+  gap: 60px;
+  align-items: center;
+}
+
+.hero__eyebrow{
+  color: var(--text-muted);
+  font-size: 0.95rem;
+  margin: 0 0 18px;
+}
+
+.hero__title{
+  font-family: var(--font-display);
+  font-size: clamp(3.4rem, 7vw, 6.2rem);
+  line-height: 0.98;
+  font-weight: 500;
+  margin: 0 0 24px;
+  letter-spacing: -0.01em;
+}
+
+.hero__lede{
+  font-size: 1.15rem;
+  color: var(--text-muted);
+  max-width: 44ch;
+  margin: 0 0 32px;
+  line-height: 1.55;
+}
+
+.hero__meta{
+  border-left: 2px solid var(--accent);
+  padding-left: 18px;
+  margin-bottom: 40px;
+}
+
+.hero__meta-line{
+  margin: 0 0 6px;
+  font-size: 0.98rem;
+  color: var(--text);
+}
+.hero__meta-line--muted{
+  color: var(--text-muted);
+  font-size: 0.92rem;
+}
+
+.hero__actions{
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
+.hero__visual{
+  position: relative;
+  height: 440px;
+}
+
+.code-window{
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-lg);
+  overflow: hidden;
+  transform: rotate(1.2deg);
+}
+
+.code-window__bar{
+  display: flex;
+  gap: 7px;
+  padding: 14px 18px;
+  background: var(--surface-2);
+  border-bottom: 1px solid var(--border);
+}
+.code-window__bar span{
+  width: 10px; height: 10px; border-radius: 50%;
+  background: var(--border-strong);
+}
+.code-window__bar span:nth-child(1){ background: #E5695B; }
+.code-window__bar span:nth-child(2){ background: #E5B85B; }
+.code-window__bar span:nth-child(3){ background: #6EC17C; }
+
+.code-window__body{
+  margin: 0;
+  padding: 26px 24px;
+  font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
+  font-size: 0.86rem;
+  line-height: 1.85;
+  color: var(--text-muted);
+  overflow-x: auto;
+}
+.tok-key{ color: var(--accent-strong); }
+.tok-var{ color: var(--text); }
+.tok-prop{ color: var(--champagne); }
+.tok-str{ color: #9FCB9A; }
+
+.float-card{
+  position: absolute;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  padding: 10px 18px;
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  box-shadow: var(--shadow-md);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.float-card--1{ top: -22px; right: 30px; }
+.float-card--2{ bottom: 18px; left: -20px; }
+
+.float-card__dot{
+  width: 7px; height: 7px; border-radius: 50%;
+  background: #6EC17C;
+  box-shadow: 0 0 0 3px rgba(110,193,124,0.18);
+}
+
+.hero__scroll{
+  position: absolute;
+  bottom: 34px;
+  left: 32px;
+  width: 1px;
+  height: 46px;
+  background: var(--border-strong);
+  overflow: hidden;
+}
+.hero__scroll span{
+  display: block;
+  width: 100%;
+  height: 40%;
+  background: var(--accent-strong);
+}
+
+/* =========================================================
+   SOBRE MÍ
+   ========================================================= */
+
+.about{ padding: 130px 0; }
+
+.about__inner{
+  display: grid;
+  grid-template-columns: 0.85fr 1.15fr;
+  gap: 70px;
+  align-items: center;
+}
+
+.about__frame{
+  position: relative;
+  aspect-ratio: 4/5;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border);
+  background: linear-gradient(160deg, var(--surface), var(--bg-alt));
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.about__frame-glow{
+  position: absolute;
+  width: 60%;
+  height: 60%;
+  background: radial-gradient(circle, rgba(124,140,255,0.22), transparent 70%);
+  filter: blur(10px);
+}
+
+.about__frame-grid{
+  position: absolute; inset: 0;
+  display: grid;
+  grid-template-columns: repeat(2,1fr);
+  grid-template-rows: repeat(2,1fr);
+}
+.about__frame-grid span{ border: 1px solid rgba(255,255,255,0.05); }
+
+.about__frame-tag{
+  position: relative;
+  font-family: var(--font-display);
+  font-size: 5.5rem;
+  color: var(--text);
+  opacity: 0.9;
+  margin: 0;
+}
+
+.about__text{
+  color: var(--text-muted);
+  font-size: 1.02rem;
+  margin: 0 0 18px;
+  max-width: 56ch;
+}
+.about__text:last-child{ margin-bottom: 0; }
+
+/* =========================================================
+   TIMELINE / EXPERIENCIA
+   ========================================================= */
+
+.timeline-section{ padding: 60px 0 130px; }
+
+.timeline{
+  position: relative;
+  margin: 60px 0 90px;
+  padding-left: 40px;
+}
+
+.timeline__line{
+  position: absolute;
+  left: 0; top: 6px; bottom: 6px;
+  width: 1px;
+  background: var(--border-strong);
+}
+
+.timeline__item{
+  position: relative;
+  padding-bottom: 48px;
+}
+.timeline__item:last-child{ padding-bottom: 0; }
+
+.timeline__marker{
+  position: absolute;
+  left: -45px; top: 4px;
+  width: 10px; height: 10px;
+  border-radius: 50%;
+  background: var(--bg);
+  border: 2px solid var(--text-faint);
+}
+.timeline__marker--active{
+  border-color: var(--accent-strong);
+  background: var(--accent);
+  box-shadow: 0 0 0 5px var(--accent-soft);
+}
+
+.timeline__period{
+  color: var(--champagne);
+  font-size: 0.88rem;
+  margin: 0 0 8px;
+}
+
+.timeline__title{
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: 1.35rem;
+  margin: 0 0 8px;
+}
+
+.timeline__text{
+  color: var(--text-muted);
+  margin: 0;
+  max-width: 60ch;
+}
+
+.areas{
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  background: var(--border);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+}
+
+.area-card{
+  background: var(--surface);
+  padding: 30px 26px;
+  transition: background .3s var(--ease);
+}
+.area-card:hover{ background: var(--surface-2); }
+
+.area-card__title{
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: 1.1rem;
+  margin: 0 0 8px;
+}
+.area-card__text{
+  color: var(--text-muted);
+  font-size: 0.92rem;
+  margin: 0;
+}
+
+/* =========================================================
+   HABILIDADES
+   ========================================================= */
+
+.skills{ padding: 60px 0 130px; }
+
+.skills__grid{
+  margin-top: 50px;
+  border-top: 1px solid var(--border);
+}
+
+.skill-row{
+  display: grid;
+  grid-template-columns: 220px 1fr;
+  gap: 40px;
+  padding: 22px 0;
+  border-bottom: 1px solid var(--border);
+  align-items: baseline;
+}
+
+.skill-row__name{
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  color: var(--text);
+}
+
+.skill-row__desc{
+  color: var(--text-muted);
+  margin: 0;
+  max-width: 60ch;
+}
+
+/* =========================================================
+   PROYECTOS
+   ========================================================= */
+
+.projects{ padding: 60px 0 130px; }
+
+.projects__subtitle{
+  color: var(--text-muted);
+  font-size: 1.05rem;
+  max-width: 60ch;
+  margin: 0 0 14px;
+}
+
+.projects__note{
+  color: var(--text-faint);
+  font-size: 0.9rem;
+  max-width: 62ch;
+  margin: 0 0 40px;
+  padding-left: 16px;
+  border-left: 2px solid var(--border-strong);
+}
+
+.filters{
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 44px;
+}
+
+.filter{
+  background: transparent;
+  border: 1px solid var(--border-strong);
+  color: var(--text-muted);
+  padding: 9px 18px;
+  border-radius: 999px;
+  font-size: 0.86rem;
+  transition: all .3s var(--ease);
+}
+.filter:hover{ color: var(--text); border-color: var(--accent-strong); }
+.filter.is-active{
+  background: var(--text);
+  color: var(--bg);
+  border-color: var(--text);
+}
+
+.projects__grid{
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 26px;
+}
+
+.project-card{
+  grid-column: span 1;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  cursor: pointer;
+  transition: transform .45s var(--ease), border-color .45s var(--ease), box-shadow .45s var(--ease);
+  display: flex;
+  flex-direction: column;
+}
+
+.project-card:hover{
+  transform: translateY(-6px);
+  border-color: var(--border-strong);
+  box-shadow: var(--shadow-lg);
+}
+
+.project-card--featured{
+  grid-column: span 2;
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+}
+
+.project-card__media{
+  position: relative;
+  aspect-ratio: 16/10;
+  background: linear-gradient(150deg, var(--surface-2), var(--bg-alt));
+  overflow: hidden;
+}
+.project-card--featured .project-card__media{ aspect-ratio: unset; height: 100%; min-height: 320px; }
+
+.project-card__media-fallback{
+  position: absolute; inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-display);
+  font-size: 2.4rem;
+  color: var(--text-faint);
+}
+
+.project-card__media img{
+  width: 100%; height: 100%;
+  object-fit: cover;
+  transition: transform .6s var(--ease);
+}
+.project-card:hover .project-card__media img{ transform: scale(1.045); }
+
+.project-card__tag{
+  position: absolute;
+  top: 16px; left: 16px;
+  background: var(--champagne);
+  color: #191307;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  padding: 6px 12px;
+  border-radius: 999px;
+}
+
+.project-card__num{
+  position: absolute;
+  top: 16px; right: 16px;
+  font-family: var(--font-display);
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  background: rgba(10,11,16,0.55);
+  backdrop-filter: blur(6px);
+  padding: 5px 11px;
+  border-radius: 999px;
+}
+
+.project-card__body{
+  padding: 26px 28px 28px;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+.project-card--featured .project-card__body{ justify-content: center; padding: 40px; }
+
+.project-card__meta{
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  color: var(--text-faint);
+  font-size: 0.8rem;
+  margin-bottom: 12px;
+}
+.project-card__meta span:not(:last-child)::after{
+  content: '·';
+  margin-left: 8px;
+  color: var(--text-faint);
+}
+
+.project-card__title{
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: 1.3rem;
+  margin: 0 0 10px;
+}
+.project-card--featured .project-card__title{ font-size: 2rem; }
+
+.project-card__desc{
+  color: var(--text-muted);
+  font-size: 0.94rem;
+  margin: 0 0 18px;
+  flex: 1;
+}
+
+.project-card__tech{
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 18px;
+}
+.tech-pill{
+  font-size: 0.76rem;
+  color: var(--text-muted);
+  border: 1px solid var(--border);
+  padding: 4px 11px;
+  border-radius: 999px;
+}
+
+.project-card__link{
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--text);
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+/* =========================================================
+   MODAL
+   ========================================================= */
+
+.modal{
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity .4s var(--ease), visibility .4s var(--ease);
+}
+.modal.is-open{ opacity: 1; visibility: visible; }
+
+.modal__backdrop{
+  position: absolute; inset: 0;
+  background: rgba(6,7,11,0.72);
+  backdrop-filter: blur(6px);
+}
+
+.modal__panel{
+  position: relative;
+  background: var(--surface);
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-lg);
+  max-width: 620px;
+  width: 100%;
+  max-height: 86vh;
+  overflow-y: auto;
+  padding: 44px;
+  transform: translateY(18px) scale(0.98);
+  opacity: 0;
+  transition: transform .4s var(--ease), opacity .4s var(--ease);
+  box-shadow: var(--shadow-lg);
+}
+.modal.is-open .modal__panel{
+  transform: translateY(0) scale(1);
+  opacity: 1;
+}
+
+.modal__close{
+  position: absolute;
+  top: 20px; right: 20px;
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  color: var(--text-muted);
+  width: 34px; height: 34px;
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  transition: color .3s var(--ease), border-color .3s var(--ease);
+}
+.modal__close:hover{ color: var(--text); border-color: var(--accent-strong); }
+
+.modal__eyebrow{ color: var(--text-faint); font-size: 0.82rem; margin: 0 0 10px; }
+.modal__title{
+  font-family: var(--font-display);
+  font-size: 1.9rem;
+  font-weight: 500;
+  margin: 0 0 18px;
+}
+.modal__desc{ color: var(--text-muted); margin: 0 0 22px; }
+
+.modal__row{
+  display: flex;
+  gap: 24px;
+  padding: 14px 0;
+  border-top: 1px solid var(--border);
+  font-size: 0.9rem;
+}
+.modal__row-label{ color: var(--text-faint); min-width: 120px; }
+.modal__row-value{ color: var(--text); }
+
+.modal__tech{ display: flex; flex-wrap: wrap; gap: 8px; }
+
+.modal__actions{
+  display: flex;
+  gap: 12px;
+  margin-top: 28px;
+}
+
+/* =========================================================
+   MÁS ALLÁ DE ESTOS PROYECTOS
+   ========================================================= */
+
+.more{ padding: 60px 0 130px; }
+
+.more__text{
+  color: var(--text-muted);
+  max-width: 68ch;
+  margin: 0 0 44px;
+}
+
+.more__grid{
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+}
+
+.more-card{
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 22px 24px;
+  font-size: 0.95rem;
+  color: var(--text);
+  transition: border-color .3s var(--ease), background .3s var(--ease);
+}
+.more-card:hover{
+  border-color: var(--accent-strong);
+  background: var(--surface);
+}
+
+/* =========================================================
+   PROCESO
+   ========================================================= */
+
+.process{ padding: 60px 0 130px; }
+
+.process__grid{
+  margin-top: 50px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1px;
+  background: var(--border);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+
+.process-step{
+  background: var(--bg);
+  padding: 34px 26px;
+}
+
+.process-step__num{
+  display: block;
+  font-family: var(--font-display);
+  color: var(--accent-strong);
+  font-size: 1rem;
+  margin-bottom: 20px;
+}
+
+.process-step__title{
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  font-weight: 500;
+  margin: 0 0 8px;
+}
+
+.process-step__text{
+  color: var(--text-muted);
+  font-size: 0.92rem;
+  margin: 0;
+}
+
+/* =========================================================
+   EDUCACIÓN
+   ========================================================= */
+
+.education{ padding: 60px 0 130px; }
+
+.education__list{
+  margin-top: 50px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+}
+
+.edu-card{
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 34px;
+  background: linear-gradient(160deg, var(--surface), transparent);
+}
+
+.edu-card__period{
+  color: var(--champagne);
+  font-size: 0.85rem;
+  margin: 0 0 14px;
+}
+
+.edu-card__title{
+  font-family: var(--font-display);
+  font-size: 1.3rem;
+  font-weight: 500;
+  margin: 0 0 6px;
+}
+
+.edu-card__degree{
+  color: var(--text);
+  font-size: 0.98rem;
+  margin: 0 0 14px;
+}
+
+.edu-card__text{
+  color: var(--text-muted);
+  font-size: 0.92rem;
+  margin: 0;
+}
+
+/* =========================================================
+   CONTACTO
+   ========================================================= */
+
+.contact{
+  padding: 130px 0;
+  background:
+    radial-gradient(50% 60% at 50% 0%, rgba(124,140,255,0.08), transparent 70%);
+}
+
+.contact__inner{ text-align: center; }
+.contact__title{ margin-left: auto; margin-right: auto; max-width: 16ch; }
+
+.contact__text{
+  color: var(--text-muted);
+  max-width: 56ch;
+  margin: 0 auto 36px;
+}
+
+.contact__actions{
+  display: flex;
+  justify-content: center;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
+/* =========================================================
+   FOOTER
+   ========================================================= */
+
+.footer{
+  border-top: 1px solid var(--border);
+  padding: 50px 0;
+}
+
+.footer__inner{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+
+.footer__name{
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  margin: 0;
+}
+.footer__role{
+  color: var(--text-faint);
+  font-size: 0.85rem;
+  margin: 2px 0 0;
+}
+
+.footer__nav{
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+.footer__nav a{
+  font-size: 0.86rem;
+  color: var(--text-muted);
+  transition: color .3s var(--ease);
+}
+.footer__nav a:hover{ color: var(--text); }
+
+.footer__copy{
+  color: var(--text-faint);
+  font-size: 0.82rem;
+  margin: 0;
+}
+
+/* =========================================================
+   SCROLL REVEAL
+   ========================================================= */
+
+.reveal{
+  opacity: 0;
+  transform: translateY(22px);
+  transition: opacity .8s var(--ease), transform .8s var(--ease);
+}
+.reveal.is-visible{
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+
+@media (max-width: 1024px){
+  .hero__inner{ grid-template-columns: 1fr; gap: 70px; }
+  .hero__visual{ height: 380px; order: -1; }
+  .about__inner{ grid-template-columns: 1fr; gap: 44px; }
+  .about__frame{ max-width: 340px; margin: 0 auto; }
+  .areas{ grid-template-columns: repeat(2,1fr); }
+  .process__grid{ grid-template-columns: repeat(2,1fr); }
+  .more__grid{ grid-template-columns: repeat(2,1fr); }
+  .education__list{ grid-template-columns: 1fr; }
+  .project-card--featured{ grid-column: span 2; grid-template-columns: 1fr; }
+  .project-card--featured .project-card__media{ min-height: 260px; }
+}
+
+@media (max-width: 860px){
+  .nav__links{
+    position: fixed;
+    top: 0; right: 0;
+    height: 100vh;
+    width: min(78vw, 340px);
+    background: rgba(12,13,19,0.98);
+    backdrop-filter: blur(16px);
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 26px;
+    padding: 40px;
+    transform: translateX(100%);
+    transition: transform .45s var(--ease);
+    border-left: 1px solid var(--border);
+  }
+  .nav__links.is-open{ transform: translateX(0); }
+  .nav__link{ font-size: 1.1rem; color: var(--text); }
+  .nav__cta{ margin-top: 8px; }
+  .nav__toggle{ display: flex; }
+
+  .projects__grid{ grid-template-columns: 1fr; }
+  .project-card--featured{ grid-column: span 1; }
+}
+
+@media (max-width: 640px){
+  .section-inner{ padding: 0 20px; }
+  .nav__inner{ padding: 0 20px; }
+
+  .hero{ padding: 120px 0 60px; }
+  .hero__title{ font-size: clamp(2.6rem, 13vw, 4rem); }
+  .hero__actions{ flex-direction: column; align-items: stretch; }
+  .hero__actions .btn{ justify-content: center; }
+  .hero__visual{ height: 300px; }
+  .code-window{ transform: none; }
+  .float-card{ font-size: 0.74rem; padding: 8px 14px; }
+  .float-card--1{ top: -14px; right: 10px; }
+  .float-card--2{ bottom: -14px; left: -8px; }
+
+  .about, .timeline-section, .skills, .projects, .more, .process, .education, .contact{
+    padding-top: 40px;
+    padding-bottom: 80px;
+  }
+
+  .areas{ grid-template-columns: 1fr; }
+  .skill-row{ grid-template-columns: 1fr; gap: 6px; }
+  .more__grid{ grid-template-columns: 1fr; }
+  .process__grid{ grid-template-columns: 1fr; }
+  .filters{ gap: 8px; }
+  .filter{ padding: 8px 14px; font-size: 0.82rem; }
+
+  .modal__panel{ padding: 30px 22px; max-height: 90vh; }
+  .modal__row{ flex-direction: column; gap: 4px; }
+
+  .footer__inner{ flex-direction: column; align-items: flex-start; text-align: left; }
+}
+
+/* reduced motion */
+@media (prefers-reduced-motion: reduce){
+  html{ scroll-behavior: auto; }
+  *,*::before,*::after{
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+  .reveal{ opacity: 1; transform: none; }
+}
+</style>
+<div class="grain"></div>
+
+<!-- NAVBAR -->
+<header class="nav" id="nav">
+  <div class="nav__inner">
+    <a href="#inicio" class="nav__brand">Mariana</a>
+
+    <nav class="nav__links" id="navLinks">
+      <a href="#inicio" class="nav__link">Inicio</a>
+      <a href="#sobre-mi" class="nav__link">Sobre mí</a>
+      <a href="#experiencia" class="nav__link">Experiencia</a>
+      <a href="#habilidades" class="nav__link">Habilidades</a>
+      <a href="#proyectos" class="nav__link">Proyectos</a>
+      <a href="#contacto" class="nav__link">Contacto</a>
+      <a href="#proyectos" class="nav__cta">Explorar proyectos <span class="arrow">→</span></a>
+    </nav>
+
+    <button class="nav__toggle" id="navToggle" aria-label="Abrir menú" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero" id="inicio">
+  <div class="hero__inner">
+    <div class="hero__text">
+      <p class="hero__eyebrow">Técnico Web & Software Junior</p>
+      <h1 class="hero__title">Mariana</h1>
+      <p class="hero__lede">Desarrollo páginas web, sistemas y experiencias digitales combinando programación, diseño y funcionalidad.</p>
+
+      <div class="hero__meta">
+        <p class="hero__meta-line">3–3.5 años desarrollando proyectos durante mi formación en bachillerato técnico</p>
+        <p class="hero__meta-line hero__meta-line--muted">Actualmente estudiante de Ingeniería en Tecnología de Software en la UANL</p>
+      </div>
+
+      <div class="hero__actions">
+        <a href="#proyectos" class="btn btn--primary">Ver proyectos</a>
+        <a href="#experiencia" class="btn btn--ghost">Conocer mi experiencia</a>
+      </div>
+    </div>
+
+    <div class="hero__visual" aria-hidden="true">
+      <div class="code-window">
+        <div class="code-window__bar">
+          <span></span><span></span><span></span>
+        </div>
+        <pre class="code-window__body"><code><span class="tok-key">const</span> <span class="tok-var">desarrolladora</span> = {
+  <span class="tok-prop">nombre</span>: <span class="tok-str">"Mariana"</span>,
+  <span class="tok-prop">enfoque</span>: [<span class="tok-str">"web"</span>, <span class="tok-str">"sistemas"</span>, <span class="tok-str">"software"</span>],
+  <span class="tok-prop">formacion</span>: <span class="tok-str">"Ing. Tecnología de Software — UANL"</span>,
+  <span class="tok-prop">experiencia</span>: <span class="tok-str">"3–3.5 años"</span>,
+  <span class="tok-prop">disponible</span>: <span class="tok-key">true</span>
+};</code></pre>
+      </div>
+      <div class="float-card float-card--1">
+        <span class="float-card__dot"></span> Proyecto desplegado
+      </div>
+      <div class="float-card float-card--2">
+        05 proyectos destacados
+      </div>
+    </div>
+  </div>
+  <div class="hero__scroll" aria-hidden="true"><span></span></div>
+</section>
+
+<!-- SOBRE MÍ -->
+<section class="about" id="sobre-mi">
+  <div class="section-inner about__inner">
+    <div class="about__visual" aria-hidden="true">
+      <div class="about__frame">
+        <div class="about__frame-glow"></div>
+        <div class="about__frame-grid">
+          <span></span><span></span><span></span><span></span>
+        </div>
+        <p class="about__frame-tag">M.</p>
+      </div>
+    </div>
+
+    <div class="about__content">
+      <p class="section-eyebrow">Sobre mí</p>
+      <h2 class="section-title">De la práctica constante nace el criterio.</h2>
+      <p class="about__text">Soy Mariana, desarrolladora web y estudiante de Ingeniería en Tecnología de Software en la Universidad Autónoma de Nuevo León.</p>
+      <p class="about__text">Cuento con aproximadamente 3 a 3.5 años de experiencia práctica desarrollando proyectos durante mi formación en bachillerato técnico.</p>
+      <p class="about__text">Durante este tiempo he trabajado en distintos proyectos de páginas web, sistemas, simuladores y soluciones digitales, desarrollando habilidades tanto en programación como en diseño y experiencia de usuario.</p>
+      <p class="about__text">Actualmente continúo fortaleciendo mis conocimientos mediante mi formación universitaria y nuevos proyectos tecnológicos.</p>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCIA -->
+<section class="timeline-section" id="experiencia">
+  <div class="section-inner">
+    <p class="section-eyebrow">Experiencia</p>
+    <h2 class="section-title">Experiencia desarrollando proyectos</h2>
+
+    <div class="timeline" id="timeline">
+      <div class="timeline__line"></div>
+
+      <div class="timeline__item">
+        <div class="timeline__marker"></div>
+        <div class="timeline__content">
+          <p class="timeline__period">3–3.5 años</p>
+          <h3 class="timeline__title">Desarrollo de proyectos durante bachillerato técnico en la Escuela Industrial y Preparatoria Técnica Álvaro Obregón</h3>
+          <p class="timeline__text">Experiencia práctica desarrollando páginas, sistemas, simuladores e interfaces.</p>
+        </div>
+      </div>
+
+      <div class="timeline__item">
+        <div class="timeline__marker timeline__marker--active"></div>
+        <div class="timeline__content">
+          <p class="timeline__period">Actualmente</p>
+          <h3 class="timeline__title">Ingeniería en Tecnología de Software — Facultad de Ingeniería Mecánica y Eléctrica UANL</h3>
+          <p class="timeline__text">Formación universitaria orientada al desarrollo de software, programación y tecnología.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="areas">
+      <div class="area-card">
+        <h3 class="area-card__title">Desarrollo Web</h3>
+        <p class="area-card__text">Páginas modernas, responsivas y funcionales.</p>
+      </div>
+      <div class="area-card">
+        <h3 class="area-card__title">Sistemas</h3>
+        <p class="area-card__text">Desarrollo de sistemas y funcionalidades personalizadas.</p>
+      </div>
+      <div class="area-card">
+        <h3 class="area-card__title">Bases de Datos</h3>
+        <p class="area-card__text">Trabajo con almacenamiento y manejo de información.</p>
+      </div>
+      <div class="area-card">
+        <h3 class="area-card__title">Login y autenticación</h3>
+        <p class="area-card__text">Implementación de sistemas de acceso.</p>
+      </div>
+      <div class="area-card">
+        <h3 class="area-card__title">Diseño</h3>
+        <p class="area-card__text">Diseño de invitaciones personalizadas, flyers, anuncios,etc</p>
+      </div>
+      <div class="area-card">
+        <h3 class="area-card__title">Simuladores</h3>
+        <p class="area-card__text">Creación de proyectos interactivos y educativos.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HABILIDADES -->
+<section class="skills" id="habilidades">
+  <div class="section-inner">
+    <p class="section-eyebrow">Habilidades</p>
+    <h2 class="section-title">Tecnologías & herramientas</h2>
+
+    <div class="skills__grid">
+      <div class="skill-row">
+        <span class="skill-row__name">HTML & CSS</span>
+        <p class="skill-row__desc">Estructura y estilo de todas las páginas e interfaces que he construido.</p>
+      </div>
+      <div class="skill-row">
+        <span class="skill-row__name">JavaScript</span>
+        <p class="skill-row__desc">Interactividad, lógica de simuladores y generación dinámica de contenido.</p>
+      </div>
+      <div class="skill-row">
+        <span class="skill-row__name">Python</span>
+        <p class="skill-row__desc">Desarrollo de programas y lógica de backend en proyectos académicos.</p>
+      </div>
+     
+      <div class="skill-row">
+        <span class="skill-row__name">SQL</span>
+        <p class="skill-row__desc">Diseño y consulta de bases de datos para sistemas con información persistente.</p>
+      </div>
+      <div class="skill-row">
+        <span class="skill-row__name">Git & GitHub</span>
+        <p class="skill-row__desc">Control de versiones y publicación de proyectos.</p>
+      </div>
+      <div class="skill-row">
+        <span class="skill-row__name">Bases de datos</span>
+        <p class="skill-row__desc">Almacenamiento y manejo de información en sistemas propios.</p>
+      </div>
+      <div class="skill-row">
+        <span class="skill-row__name">Sistemas de login</span>
+        <p class="skill-row__desc">Implementación de autenticación y control de acceso de usuarios.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROYECTOS -->
+<section class="projects" id="proyectos">
+  <div class="section-inner">
+    <p class="section-eyebrow">Proyectos</p>
+    <h2 class="section-title">Proyectos destacados</h2>
+    <p class="projects__subtitle">Una selección de proyectos que representan parte de mi experiencia práctica en desarrollo web, programación y soluciones digitales.</p>
+    <p class="projects__note">Los siguientes proyectos representan una selección de mis trabajos más destacados. También he desarrollado otros proyectos relacionados con sistemas, bases de datos, autenticación y programación.</p>
+
+    <div class="filters" id="filters" role="tablist" aria-label="Filtrar proyectos">
+      <button class="filter" data-filter="Todos" aria-pressed="true">Todos</button>
+      <button class="filter" data-filter="Web" aria-pressed="false">Web</button>
+     
+      <button class="filter" data-filter="Simuladores" aria-pressed="false">Simuladores</button>
+      <button class="filter" data-filter="Académicos" aria-pressed="false">Académicos</button>
+      
+    </div>
+
+    <div class="projects__grid" id="projectsGrid"></div>
+  </div>
+</section>
+
+<!-- MODAL DETALLE DE PROYECTO -->
+<div class="modal" id="projectModal" aria-hidden="true">
+  <div class="modal__backdrop" id="modalBackdrop"></div>
+  <div class="modal__panel" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <button class="modal__close" id="modalClose" aria-label="Cerrar">✕</button>
+    <div class="modal__content" id="modalContent"></div>
+  </div>
+</div>
+
+<!-- EXPERIENCIA ADICIONAL -->
+<section class="more">
+  <div class="section-inner">
+    <p class="section-eyebrow">Más allá de estos proyectos</p>
+    <h2 class="section-title">Experiencia adicional</h2>
+    <p class="more__text">Además de los proyectos presentados, he trabajado en sistemas con login, bases de datos, programación y diferentes soluciones digitales. Estos proyectos forman parte de una experiencia más amplia que continúa creciendo con mi formación universitaria.</p>
+
+    <div class="more__grid">
+      <div class="more-card">Sistemas con Login</div>
+      <div class="more-card">Bases de Datos</div>
+      <div class="more-card">Sistemas Web</div>
+      <div class="more-card">Programación</div>
+      <div class="more-card">Interfaces Interactivas</div>
+      <div class="more-card">Proyectos Académicos</div>
+    </div>
+  </div>
+</section>
+
+<!-- FORMA DE TRABAJAR -->
+<section class="process">
+  <div class="section-inner">
+    <p class="section-eyebrow">Metodología</p>
+    <h2 class="section-title">De una idea a una solución</h2>
+
+    <div class="process__grid">
+      <div class="process-step">
+        <span class="process-step__num">01</span>
+        <h3 class="process-step__title">Analizar</h3>
+        <p class="process-step__text">Comprender el problema.</p>
+      </div>
+      <div class="process-step">
+        <span class="process-step__num">02</span>
+        <h3 class="process-step__title">Diseñar</h3>
+        <p class="process-step__text">Crear la estructura y experiencia.</p>
+      </div>
+      <div class="process-step">
+        <span class="process-step__num">03</span>
+        <h3 class="process-step__title">Desarrollar</h3>
+        <p class="process-step__text">Implementar la solución.</p>
+      </div>
+      <div class="process-step">
+        <span class="process-step__num">04</span>
+        <h3 class="process-step__title">Optimizar</h3>
+        <p class="process-step__text">Mejorar funcionamiento y experiencia.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EDUCACIÓN -->
+<section class="education">
+  <div class="section-inner">
+    <p class="section-eyebrow">Formación</p>
+    <h2 class="section-title">Educación</h2>
+
+    <div class="education__list">
+      <div class="edu-card">
+        <p class="edu-card__period">Actualmente en curso</p>
+        <h3 class="edu-card__title">Universidad Autónoma de Nuevo León</h3>
+        <p class="edu-card__degree">Ingeniería en Tecnología de Software-Facultad de Ingeniería Mecánica y Eléctrica</p>
+        <p class="edu-card__text">Formación enfocada en desarrollo de software, programación, tecnología y creación de soluciones digitales.</p>
+      </div>
+      <div class="edu-card">
+        <p class="edu-card__period">3–3.5 años desarrollando proyectos</p>
+        <h3 class="edu-card__title">Bachillerato Técnico Programación Web--Escuela Industrial y Preparatoria Técnica Álvaro Obregón</h3>
+        <p class="edu-card__text">La etapa donde adquirí experiencia práctica mediante proyectos tecnológicos.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACTO -->
+<section class="contact" id="contacto">
+  <div class="section-inner contact__inner">
+    <p class="section-eyebrow">Contacto</p>
+    <h2 class="section-title contact__title">Construyamos algo increíble</h2>
+    <p class="contact__text">Estoy interesada en continuar desarrollando proyectos, adquirir experiencia profesional y participar en nuevas oportunidades relacionadas con tecnología y desarrollo de software.</p>
+ 
+    <div class="contact__actions">
+     
+  <a href="https://wa.me/528115339741?text=Hola%20Mariana%2C%20vi%20tu%20portafolio%20y%20me%20gustar%C3%ADa%20platicar%20sobre%20un%20proyecto." class="btn btn--ghost" target="_blank" rel="noopener">
+  <svg class="btn__icon" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M17 14.3c-.3-.15-1.7-.85-2-.95-.27-.1-.46-.15-.66.15-.2.3-.75.95-.92 1.14-.17.2-.34.22-.63.08-.3-.15-1.24-.46-2.37-1.47-.87-.78-1.47-1.74-1.64-2.03-.17-.3-.02-.46.13-.6.13-.13.3-.34.44-.5.15-.18.2-.3.3-.5.1-.2.05-.38-.02-.53-.08-.15-.66-1.6-.9-2.2-.24-.57-.48-.5-.66-.5h-.56c-.2 0-.5.07-.77.38-.26.3-1 .98-1 2.4 0 1.4 1.03 2.77 1.17 2.96.15.2 2.03 3.1 4.92 4.35.69.3 1.22.47 1.64.6.69.22 1.32.19 1.82.11.55-.08 1.7-.7 1.94-1.36.24-.67.24-1.24.17-1.36-.07-.12-.26-.2-.55-.34Z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/><path d="M20.5 3.5A10.4 10.4 0 0 0 3.13 15.8L2 21l5.36-1.1A10.4 10.4 0 1 0 20.5 3.5Z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/></svg>
+  WhatsApp
+</a>
+    </div>
+ 
+    <div class="social" aria-label="Redes sociales">
+     
+ 
+      <a href="https://www.tiktok.com/@mariana_pages" class="social__link" target="_blank" rel="noopener" aria-label="TikTok">
+        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M14 3v10.6a2.9 2.9 0 1 1-2.4-2.85M14 3c.35 2.2 2 3.9 4.2 4.2M14 7.2c.35 1.8 1.7 3.2 3.5 3.6" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+      <a href="https://www.facebook.com/profile.php?id=61593952021738&locale=es_LA" class="social__link" target="_blank" rel="noopener" aria-label="Facebook">
+        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M14.5 21v-7h2.4l.4-3h-2.8V9.1c0-.87.24-1.46 1.5-1.46H17.5V5c-.27-.04-1.17-.11-2.23-.11-2.21 0-3.72 1.35-3.72 3.82V11H9.2v3h2.35v7h2.95Z" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/></svg>
+      </a>
+    </div>
+  </div>
+</section>
+ 
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="section-inner footer__inner">
+    <div class="footer__brand">
+      <p class="footer__name">Mariana</p>
+      <p class="footer__role">Técnico Web & Software Junior</p>
+    </div>
+    <nav class="footer__nav">
+      <a href="#inicio">Inicio</a>
+      <a href="#sobre-mi">Sobre mí</a>
+      <a href="#experiencia">Experiencia</a>
+      <a href="#habilidades">Habilidades</a>
+      <a href="#proyectos">Proyectos</a>
+      <a href="#contacto">Contacto</a>
+    </nav>
+    <p class="footer__copy">© 2026 Mariana Aquino. Todos los derechos reservados.</p>
+  </div>
+</footer>
+
+<script>
+  /* =========================================================
+   MARIANA — PORTFOLIO
+   Sistema de proyectos, filtros, modal, navegación y
+   animaciones al hacer scroll.
+   ========================================================= */
+
+/* ---------------------------------------------------------
+   1. ARREGLO DE PROYECTOS
+   Para agregar un nuevo proyecto, solo añade un objeto aquí.
+   La tarjeta, el filtro y el modal se generan automáticamente.
+   --------------------------------------------------------- */
+const proyectos = [
+  {
+    id: 1,
+    nombre: "Design Luxury B&M",
+    fecha: "Julio 2026",
+    categoria: "Comercial",
+    filtros: ["Web", "Comerciales"],
+    tipo: "Página web comercial / catálogo digital",
+    descripcion: "Sitio web comercial enfocado en la presentación y venta de materiales y acabados de lujo. El proyecto combina una identidad visual premium con una experiencia enfocada en mostrar materiales, productos y soluciones para espacios de alto nivel.",
+    participacion: "Diseño y desarrollo completo del sitio, incluyendo estructura, estilo visual e interacciones.",
+    tecnologias: ["HTML", "CSS", "JavaScript", "PHP"],
+    imagen: "design.png",
+    enlace: "https://designluxurybym.com.mx/",
+    textoBoton: "Visitar proyecto",
+    destacado: true
+  },
+    {
+    id: 4,
+    nombre: "Mármoles Treviño",
+    fecha: "Mayo 2025",
+    categoria: "Comercial",
+    filtros: ["Web", "Comerciales"],
+    tipo: "Página web comercial",
+    descripcion: "Sitio web comercial desarrollado para presentar productos y servicios relacionados con materiales y superficies, utilizando una estructura orientada a mostrar información, productos y facilitar la interacción con los usuarios.",
+    participacion: "Diseño y desarrollo del sitio, incluyendo estructura de contenido y presentación de productos.",
+    tecnologias: ["HTML", "CSS", "JavaScript", "PHP", "phpmyAdmin"],
+    imagen: "materiales.png",
+    enlace: "https://bejewelled-longma-d0313b.netlify.app/",
+    textoBoton: "Visitar proyecto",
+    destacado: false
+  },
+  
+ {
+    id: 5,
+    nombre: "Sitio web de taquería",
+    fecha: "Mayo 2025",
+    categoria: "Comercial",
+    filtros: ["Web", "Comerciales"],
+    tipo: "Página web comercial",
+    descripcion: "Sitio web comercial desarrollado para una taquería, con una interfaz enfocada en presentar el menú, promociones, información del negocio y facilitar la navegación del usuario.",
+    participacion: "Diseño y desarrollo completo del sitio, incluyendo menú, promociones e información del negocio.",
+    tecnologias: ["HTML", "CSS", "JavaScript"],
+    imagen: "tacos.png",
+    enlace: "https://marianaark.github.io/Sitio_taqueria/",
+    textoBoton: "Visitar proyecto",
+    destacado: false
+  }
+  ,{
+    id: 2,
+    nombre: "Simulador de esfera de caída libre",
+    fecha: "Mayo 2026",
+    categoria: "Proyecto académico",
+    filtros: ["Simuladores", "Académicos"],
+    tipo: "Simulador interactivo / Proyecto académico",
+    descripcion: "Simulador interactivo desarrollado para representar el comportamiento de una esfera durante una caída vertical. El proyecto integra variables físicas y una visualización dinámica para analizar el movimiento y su evolución durante la simulación.",
+    participacion: "Desarrollo de la lógica de simulación, la interfaz y la visualización del movimiento.",
+    tecnologias: ["HTML", "CSS", "JavaScript"],
+    imagen: "fisica.png",
+    enlace: "https://marianaark.github.io/Simulador_esfera_caida_libre/",
+    textoBoton: "Explorar simulador",
+    destacado: false
+  },
+  {
+    id: 3,
+    nombre: "Simulador de reciclaje de baterías de ion-litio",
+    fecha: "Mayo 2026",
+    categoria: "Proyecto académico",
+    filtros: ["Simuladores", "Académicos"],
+    tipo: "Simulador interactivo / Proyecto académico",
+    descripcion: "Proyecto interactivo enfocado en representar de manera visual y conceptual un proceso de reciclaje y recuperación de materiales presentes en baterías de ion-litio, integrando diferentes etapas del proceso mediante una experiencia interactiva.",
+    participacion: "Desarrollo de las distintas etapas interactivas y la lógica del proceso simulado.",
+    tecnologias: ["HTML", "CSS", "JavaScript"],
+    imagen: "quimica.png",
+    enlace: "https://marianaark.github.io/Sitio_quimica-baterias/",
+    textoBoton: "Ver proyecto",
+    destacado: false
+  },
+];
+
+/* ---------------------------------------------------------
+   2. RENDER DE PROYECTOS
+   --------------------------------------------------------- */
+const grid = document.getElementById("projectsGrid");
+
+function numeroProyecto(i){
+  return String(i + 1).padStart(2, "0");
+}
+
+function crearTarjeta(proyecto, index){
+  const card = document.createElement("article");
+  card.className = "project-card" + (proyecto.destacado ? " project-card--featured" : "");
+  card.setAttribute("data-id", proyecto.id);
+  card.setAttribute("data-filtros", proyecto.filtros.join(","));
+  card.setAttribute("tabindex", "0");
+  card.setAttribute("role", "button");
+  card.setAttribute("aria-label", `Ver detalle de ${proyecto.nombre}`);
+
+  const techPills = proyecto.tecnologias
+    .map(t => `<span class="tech-pill">${t}</span>`)
+    .join("");
+
+  card.innerHTML = `
+    <div class="project-card__media">
+      <div class="project-card__media-fallback">${proyecto.nombre.charAt(0)}</div>
+      <img src="${proyecto.imagen}" alt="${proyecto.nombre}" loading="lazy"
+           onerror="this.style.display='none'">
+      ${proyecto.destacado ? '<span class="project-card__tag">FEATURED PROJECT</span>' : ''}
+      <span class="project-card__num">${numeroProyecto(index)}</span>
+    </div>
+    <div class="project-card__body">
+      <div class="project-card__meta">
+        <span>${proyecto.categoria}</span>
+        <span>${proyecto.fecha}</span>
+      </div>
+      <h3 class="project-card__title">${proyecto.nombre}</h3>
+      <p class="project-card__desc">${proyecto.descripcion}</p>
+      <div class="project-card__tech">${techPills}</div>
+      <span class="project-card__link">${proyecto.textoBoton} <span class="arrow">→</span></span>
+    </div>
+  `;
+
+  card.addEventListener("click", () => abrirModal(proyecto));
+  card.addEventListener("keydown", (e) => {
+    if (e.key === "Enter" || e.key === " "){
+      e.preventDefault();
+      abrirModal(proyecto);
+    }
+  });
+
+  return card;
+}
+
+function renderProyectos(filtro = "Todos"){
+  grid.innerHTML = "";
+  const lista = filtro === "Todos"
+    ? proyectos
+    : proyectos.filter(p => p.filtros.includes(filtro));
+
+  lista.forEach((proyecto, index) => {
+    const card = crearTarjeta(proyecto, proyectos.indexOf(proyecto));
+    card.classList.add("reveal");
+    grid.appendChild(card);
+  });
+
+  // reactivar animaciones de aparición para las tarjetas nuevas
+  requestAnimationFrame(() => {
+    document.querySelectorAll(".project-card.reveal").forEach((el, i) => {
+      setTimeout(() => el.classList.add("is-visible"), i * 60);
+    });
+  });
+}
+
+renderProyectos();
+
+/* ---------------------------------------------------------
+   3. FILTROS
+   --------------------------------------------------------- */
+const filterButtons = document.querySelectorAll(".filter");
+
+filterButtons.forEach(btn => {
+  btn.addEventListener("click", () => {
+    filterButtons.forEach(b => {
+      b.classList.remove("is-active");
+      b.setAttribute("aria-pressed", "false");
+    });
+    btn.classList.add("is-active");
+    btn.setAttribute("aria-pressed", "true");
+    renderProyectos(btn.dataset.filter);
+  });
+});
+
+// activar "Todos" al cargar
+document.querySelector('.filter[data-filter="Todos"]').classList.add("is-active");
+
+/* ---------------------------------------------------------
+   4. MODAL DE DETALLE DE PROYECTO
+   --------------------------------------------------------- */
+const modal = document.getElementById("projectModal");
+const modalContent = document.getElementById("modalContent");
+const modalClose = document.getElementById("modalClose");
+const modalBackdrop = document.getElementById("modalBackdrop");
+let ultimoElementoActivo = null;
+
+function abrirModal(proyecto){
+  ultimoElementoActivo = document.activeElement;
+
+  const techPills = proyecto.tecnologias
+    .map(t => `<span class="tech-pill">${t}</span>`)
+    .join("");
+
+  modalContent.innerHTML = `
+    <p class="modal__eyebrow">${proyecto.tipo}</p>
+    <h3 class="modal__title" id="modalTitle">${proyecto.nombre}</h3>
+    <p class="modal__desc">${proyecto.descripcion}</p>
+
+    <div class="modal__row">
+      <span class="modal__row-label">Fecha</span>
+      <span class="modal__row-value">${proyecto.fecha}</span>
+    </div>
+    <div class="modal__row">
+      <span class="modal__row-label">Categoría</span>
+      <span class="modal__row-value">${proyecto.categoria}</span>
+    </div>
+    <div class="modal__row">
+      <span class="modal__row-label">Mi participación</span>
+      <span class="modal__row-value">${proyecto.participacion}</span>
+    </div>
+    <div class="modal__row">
+      <span class="modal__row-label">Tecnologías</span>
+      <span class="modal__row-value modal__tech">${techPills}</span>
+    </div>
+
+    <div class="modal__actions">
+      <a href="${proyecto.enlace}" target="_blank" rel="noopener" class="btn btn--primary">Visitar proyecto <span class="arrow">→</span></a>
+      <button class="btn btn--ghost" id="modalReturnBtn">Regresar</button>
+    </div>
+  `;
+
+  modal.classList.add("is-open");
+  modal.setAttribute("aria-hidden", "false");
+  document.body.style.overflow = "hidden";
+
+  document.getElementById("modalReturnBtn").addEventListener("click", cerrarModal);
+  modalClose.focus();
+}
+
+function cerrarModal(){
+  modal.classList.remove("is-open");
+  modal.setAttribute("aria-hidden", "true");
+  document.body.style.overflow = "";
+  if (ultimoElementoActivo) ultimoElementoActivo.focus();
+}
+
+modalClose.addEventListener("click", cerrarModal);
+modalBackdrop.addEventListener("click", cerrarModal);
+document.addEventListener("keydown", (e) => {
+  if (e.key === "Escape" && modal.classList.contains("is-open")) cerrarModal();
+});
+
+/* ---------------------------------------------------------
+   5. NAVBAR: scroll + menú móvil
+   --------------------------------------------------------- */
+const nav = document.getElementById("nav");
+const navToggle = document.getElementById("navToggle");
+const navLinks = document.getElementById("navLinks");
+
+window.addEventListener("scroll", () => {
+  nav.classList.toggle("is-scrolled", window.scrollY > 40);
+}, { passive: true });
+
+navToggle.addEventListener("click", () => {
+  const abierto = navLinks.classList.toggle("is-open");
+  navToggle.classList.toggle("is-open", abierto);
+  navToggle.setAttribute("aria-expanded", String(abierto));
+});
+
+navLinks.querySelectorAll("a").forEach(link => {
+  link.addEventListener("click", () => {
+    navLinks.classList.remove("is-open");
+    navToggle.classList.remove("is-open");
+    navToggle.setAttribute("aria-expanded", "false");
+  });
+});
+
+/* ---------------------------------------------------------
+   6. SCROLL REVEAL
+   --------------------------------------------------------- */
+const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+const revealTargets = document.querySelectorAll(
+  ".about__content, .about__visual, .section-eyebrow, .section-title, " +
+  ".timeline__item, .area-card, .skill-row, .more-card, .process-step, .edu-card"
+);
+
+revealTargets.forEach(el => el.classList.add("reveal"));
+
+if (prefersReducedMotion) {
+  document.querySelectorAll(".reveal").forEach(el => el.classList.add("is-visible"));
+} else {
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting){
+        entry.target.classList.add("is-visible");
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.15, rootMargin: "0px 0px -40px 0px" });
+
+  document.querySelectorAll(".reveal").forEach(el => observer.observe(el));
+}
+</script>
+</body>
+</html>
